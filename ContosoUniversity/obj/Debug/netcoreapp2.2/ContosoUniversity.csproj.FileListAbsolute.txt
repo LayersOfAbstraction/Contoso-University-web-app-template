@@ -30,3 +30,8 @@ E:\Work\Programming Experiments\ASP.NET CORE\ContosoUniversity\ContosoUniversity
 E:\Work\Programming Experiments\ASP.NET CORE\ContosoUniversity\ContosoUniversity\obj\Debug\netcoreapp2.2\ContosoUniversity.dll
 E:\Work\Programming Experiments\ASP.NET CORE\ContosoUniversity\ContosoUniversity\obj\Debug\netcoreapp2.2\ContosoUniversity.pdb
 E:\Work\Programming Experiments\ASP.NET CORE\ContosoUniversity\ContosoUniversity\obj\Debug\netcoreapp2.2\ContosoUniversity.csproj.CopyComplete
+E:\Work\Programming Experiments\ASP.NET CORE\ContosoUniversity\ContosoUniversity\obj\Debug\netcoreapp2.2\Razor\Views\Students\Create.cshtml.g.cs
+E:\Work\Programming Experiments\ASP.NET CORE\ContosoUniversity\ContosoUniversity\obj\Debug\netcoreapp2.2\Razor\Views\Students\Delete.cshtml.g.cs
+E:\Work\Programming Experiments\ASP.NET CORE\ContosoUniversity\ContosoUniversity\obj\Debug\netcoreapp2.2\Razor\Views\Students\Details.cshtml.g.cs
+E:\Work\Programming Experiments\ASP.NET CORE\ContosoUniversity\ContosoUniversity\obj\Debug\netcoreapp2.2\Razor\Views\Students\Edit.cshtml.g.cs
+E:\Work\Programming Experiments\ASP.NET CORE\ContosoUniversity\ContosoUniversity\obj\Debug\netcoreapp2.2\Razor\Views\Students\Index.cshtml.g.cs
