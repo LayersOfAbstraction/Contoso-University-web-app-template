@@ -35,6 +35,13 @@ namespace ContosoUniversity
             }
         }
 
+        /// <summary>
+        /// Because constructors can't run asynchronous code, this method is used instead. 
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
         public static async Task<PaginatedList<T>> CreateAsync(IQueryable<T> source, int pageIndex, int pageSize)
         {
             var count = await source.CountAsync();
