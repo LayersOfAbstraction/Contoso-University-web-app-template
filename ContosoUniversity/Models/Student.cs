@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace ContosoUniversity.Models
 {
@@ -10,6 +11,11 @@ namespace ContosoUniversity.Models
         public int ID { get; set; }
         public string LastName { get; set; }
         public string FirstMidName { get; set; }
+        //Specifies a data type that's more specific than the database intrinsic type.
+        //It can enable type specific features, for example a datetime picker
+        //or for EmailAddress we can use a mailto: link.
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString ="{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime EnrollmentDate { get; set; } 
 
         //This is a navigation property. It holds other entities that are related to the entity that
