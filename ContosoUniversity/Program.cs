@@ -17,7 +17,7 @@ namespace ContosoUniversity
         public static void Main(string[] args)
         {
             var host = CreateWebHostBuilder(args).Build();
-            CreateWebHostBuilder(args).Build().Run();
+            
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
