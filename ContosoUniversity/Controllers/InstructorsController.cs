@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ContosoUniversity.Data;
 using ContosoUniversity.Models;
+using ContosoUniversity.Models.SchoolViewModels;
 
 namespace ContosoUniversity.Controllers
 {
@@ -61,12 +62,17 @@ namespace ContosoUniversity.Controllers
             }
 
             //If Course selected with everything also related to it's navigational property.
-            if (id != null)
+            if (courseID != null)
             {
                 ViewData["CourseID"] = courseID.Value;
                 //SELECT Course.
-                viewModel.Enrollments = viewModel.Courses.Where(
-                    x => x.CourseID == courseID).Single().Enrollments;
+                var selectedCourse = viewModel.Courses.Where(x => x.CourseID == courseID).Single();
+                await _context.Entry(selectedCourse).Collection(x => x.Enrollments).LoadAsync();
+                foreach (Enrollment enrollment in selectedCourse.Enrollments)
+                {
+                    await _context.Entry(enrollment).Reference(x => x.Student).LoadAsync();
+                }
+                viewModel.Enrollments = selectedCourse.Enrollments;
             }
             //DISPLAY the course.
             return View(viewModel);
