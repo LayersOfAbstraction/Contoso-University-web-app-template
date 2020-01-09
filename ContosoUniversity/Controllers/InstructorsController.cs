@@ -49,7 +49,7 @@ namespace ContosoUniversity.Controllers
                 .OrderBy(i => i.LastName)
                 .ToListAsync();
             
-            //If instructor selected with everything also related to it's navigational property.
+            //If instructor selected with everything also related to it's navigational properties.
             if(id != null)
             {
 
@@ -60,12 +60,15 @@ namespace ContosoUniversity.Controllers
                 viewModel.Courses = instructor.CourseAssignments.Select(s => s.Course);
             }
 
-            if(id != null)
+            //If Course selected with everything also related to it's navigational property.
+            if (id != null)
             {
                 ViewData["CourseID"] = courseID.Value;
+                //SELECT Course.
                 viewModel.Enrollments = viewModel.Courses.Where(
                     x => x.CourseID == courseID).Single().Enrollments;
             }
+            //DISPLAY the course.
             return View(viewModel);
         }
 
