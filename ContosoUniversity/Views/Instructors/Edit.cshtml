@@ -57,8 +57,8 @@
                                 @:<td>
                                     @* Each course column is checkbox that consist of CourseID and Title. *@
                                     <input type="checkbox"
-                                           name="selectedCourses" @*Checkboxes all have the same name. This tells the model binder
-                                    to treat them as a group.*@
+                                           @*Checkboxes all have the same name. This tells the model binder*@
+                                           name="selectedCourses" 
                                            value="@course.CourseID"
                                            @(Html.Raw(course.Assigned ? "checked=\"checked\"" : "")) />
                                     @course.CourseID @: @course.Title
