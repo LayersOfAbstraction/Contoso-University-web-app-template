@@ -17,6 +17,7 @@ namespace ContosoUniversity.Models
 
         [StringLength(50,MinimumLength = 3)]
         public string Title { get; set; }
+
         [Range(0,5)]
         public int Credits { get; set; }
 
