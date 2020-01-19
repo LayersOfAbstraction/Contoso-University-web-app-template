@@ -9,11 +9,12 @@ namespace ContosoUniversity.Models
 {
     public class Student
     {
-        public int ID { get; set; }
+        public int ID { get; set; }        
         [Display(Name = "Last Name")]
         [Required]
         [StringLength(50, MinimumLength = 2)]
         public string LastName { get; set; }
+        [Required]
         [StringLength(50)]
         [Column("FirstName")]
         [Display(Name = "First Name")]
