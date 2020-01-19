@@ -36,7 +36,7 @@ namespace ContosoUniversity.Models
         //One instructor can have many assignments so this property will be a collection.
         public ICollection<CourseAssignment> CourseAssignments { get; set; }
         //One instructor can have one office so this does not need to be a collection.
-        public OfficeAssignment officeAssignment { get; set; }
+        public OfficeAssignment OfficeAssignment { get; set; }
         
     }
 }
