@@ -20,18 +20,12 @@ namespace ContosoUniversity.Controllers
             _context = context;
         }
 
-        /// <summary>
-        /// // GET: Instructors and do Eager loading of related data.
-        /// //Creates instance of the view model and puts in the list of instructors.
-        /// </summary>
-        /// <param name="id">Optional route data for InstructorID</param>
-        /// <param name="courseID">Optional route data for CourseID</param>
-        /// <returns></returns>
+        // GET: Instructors
         public async Task<IActionResult> Index(int? id, int? courseID)
         {
             var viewModel = new InstructorIndexData();
             viewModel.Instructors = await _context.Instructors
-                //Eager loading used on this navigational property.                
+                //Eager loading used on this navigational property. 
                 .Include(i => i.OfficeAssignment)
                 //Eager loading used on this navigational property. Because the view requires this it's more
                 //efficient to fetch that in the same query.
@@ -43,21 +37,19 @@ namespace ContosoUniversity.Controllers
                             //You don't need this.
                             .ThenInclude(i => i.Student)
                 .Include(i => i.CourseAssignments)
-                 //Executes when an instructor was selected in the view model list.  
-                 .ThenInclude(i => i.Course)
-                    .ThenInclude(i => i.Department)
+                    //Executes when an instructor was selected in the view model list.
+                    .ThenInclude(i => i.Course)
+                        .ThenInclude(i => i.Department)
                 .AsNoTracking()
                 .OrderBy(i => i.LastName)
                 .ToListAsync();
-            
-            //If instructor selected with everything also related to it's navigational properties.
+
             if(id != null)
             {
-
                 ViewData["InstructorID"] = id.Value;
                 //SELECT Instructor.
                 Instructor instructor = viewModel.Instructors.Where(
-                    i => i.ID == id.Value).Single();                
+                    i => i.ID == id.Value).Single();
                 viewModel.Courses = instructor.CourseAssignments.Select(s => s.Course);
             }
 
@@ -65,13 +57,12 @@ namespace ContosoUniversity.Controllers
             if (courseID != null)
             {
                 ViewData["CourseID"] = courseID.Value;
-                //SELECT Course.
                 var selectedCourse = viewModel.Courses.Where(x => x.CourseID == courseID).Single();
                 await _context.Entry(selectedCourse).Collection(x => x.Enrollments).LoadAsync();
                 foreach (Enrollment enrollment in selectedCourse.Enrollments)
                 {
                     await _context.Entry(enrollment).Reference(x => x.Student).LoadAsync();
-                }
+                }                
                 viewModel.Enrollments = selectedCourse.Enrollments;
             }
             //DISPLAY the course.
@@ -127,11 +118,11 @@ namespace ContosoUniversity.Controllers
             }
 
             var instructor = await _context.Instructors
-                .Include(i => i.OfficeAssignment)
-                //Adds eager loading for the Courses navigational property.
-                .Include(i => i.CourseAssignments).ThenInclude(i => i.Course)
-                .AsNoTracking()
-                .FirstOrDefaultAsync(m => m.ID == id);
+                    .Include(i => i.OfficeAssignment)
+                    //Adds eager loading for the Courses navigational property.
+                    .Include(i => i.CourseAssignments).ThenInclude(i => i.Course)
+                    .AsNoTracking()
+                    .FirstOrDefaultAsync(m => m.ID == id);
             if (instructor == null)
             {
                 return NotFound();
@@ -146,7 +137,7 @@ namespace ContosoUniversity.Controllers
             var instructorCourses = new HashSet<int>(instructor.CourseAssignments.Select(c => c.CourseID));
             var viewModel = new List<AssignedCourseData>();
             foreach (var course in allCourses)
-            {                
+            {
                 viewModel.Add(new AssignedCourseData
                 {
                     CourseID = course.CourseID,
@@ -169,24 +160,20 @@ namespace ContosoUniversity.Controllers
             {
                 return NotFound();
             }
-            //Gets the current Instructor entity from the database using 
-            //eager loading for the OfficeAssignment navigation property.
+
             var instructorToUpdate = await _context.Instructors
                 .Include(i => i.OfficeAssignment)
                 .Include(i => i.CourseAssignments)
                     .ThenInclude(i => i.Course)
                 .FirstOrDefaultAsync(m => m.ID == id);
 
-            //If retrieved Instructor properties are whitelisted to be included in new update.
             if (await TryUpdateModelAsync<Instructor>(
                 instructorToUpdate,
                 "",
                 i => i.FirstMidName, i => i.LastName, i => i.HireDate, i => i.OfficeAssignment))
             {
-                //If Office location is blank.
                 if (String.IsNullOrWhiteSpace(instructorToUpdate.OfficeAssignment?.Location))
                 {
-                    //Set OfficeAssignment to null so related row in OfficeAssignment gets deleted.
                     instructorToUpdate.OfficeAssignment = null;
                 }
                 UpdateInstructorCourses(selectedCourses, instructorToUpdate);
@@ -203,46 +190,38 @@ namespace ContosoUniversity.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            
             UpdateInstructorCourses(selectedCourses, instructorToUpdate);
             PopulateAssignedCourseData(instructorToUpdate);
             return View(instructorToUpdate);
         }
-        
+
         private void UpdateInstructorCourses(string[] selectedCourses, Instructor instructorToUpdate)
         {
-            if(selectedCourses == null)
+            if (selectedCourses == null)
             {
                 instructorToUpdate.CourseAssignments = new List<CourseAssignment>();
                 return;
             }
 
-            var selectedCourseHS = new HashSet<string>(selectedCourses);
+            var selectedCoursesHS = new HashSet<string>(selectedCourses);
             var instructorCourses = new HashSet<int>
                 (instructorToUpdate.CourseAssignments.Select(c => c.Course.CourseID));
             foreach (var course in _context.Courses)
             {
-                //CHECK Selected course in database then...
-                if(selectedCourseHS.Contains(course.CourseID.ToString()))
+                if (selectedCoursesHS.Contains(course.CourseID.ToString()))
                 {
-                    //...COMPARE to one selected in the view. IF selected course
-                    //is not in Instructor.CourseAssignments navigation property.    
-                    if(!instructorCourses.Contains(course.CourseID))
+                    if (!instructorCourses.Contains(course.CourseID))
                     {
-                        //Add Course to collection.
-                        instructorToUpdate.CourseAssignments.Add(new CourseAssignment 
-                            { InstructorID = instructorToUpdate.ID, CourseID = course.CourseID});
+                        instructorToUpdate.CourseAssignments.Add(new CourseAssignment { InstructorID = instructorToUpdate.ID, CourseID = course.CourseID });
                     }
-                    else
+                }
+                else
+                {
+
+                    if (instructorCourses.Contains(course.CourseID))
                     {
-                        //IF no checkboxes were selected.
-                        if(instructorCourses.Contains(course.CourseID))
-                        {
-                            //Initialize property with an empty entity collection.
-                            CourseAssignment courseToRemove = instructorToUpdate.CourseAssignments
-                                    .FirstOrDefault(i => i.CourseID == course.CourseID);
-                            _context.Remove(courseToRemove);
-                        }
+                        CourseAssignment courseToRemove = instructorToUpdate.CourseAssignments.FirstOrDefault(i => i.CourseID == course.CourseID);
+                        _context.Remove(courseToRemove);
                     }
                 }
             }
