@@ -125,11 +125,14 @@ namespace ContosoUniversity.Controllers
             return View(courseToUpdate);
         }
 
+        //Creates a SelectList collection for a drop-down list.
         private void PopulateDepartmentsDropDownList(object selectDepartment = null)
         {
             var departmentsQuery = from d in _context.Departments
                                    orderby d.Name
                                    select d;
+            //Collection pased to view. ViewBag allows optional param of departmentID which 
+            //allows <select> tag helper to know to look in ViewBag.
             ViewBag.DepartmentID = new SelectList(departmentsQuery.AsNoTracking(), "DepartmentID", "Name", selectDepartment);
         }
 
