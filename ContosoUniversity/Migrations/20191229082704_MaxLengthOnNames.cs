@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ContosoUniversity.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class MaxLengthOnNames : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -27,8 +27,8 @@ namespace ContosoUniversity.Migrations
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    LastName = table.Column<string>(nullable: true),
-                    FirstMidName = table.Column<string>(nullable: true),
+                    LastName = table.Column<string>(maxLength: 50, nullable: true),
+                    FirstMidName = table.Column<string>(maxLength: 50, nullable: true),
                     EnrollmentDate = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
