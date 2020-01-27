@@ -172,7 +172,6 @@ namespace ContosoUniversity.Data
                     },
             };
 
-            
             foreach (CourseAssignment ci in courseInstructors)
             {
                 context.CourseAssignments.Add(ci);
@@ -237,7 +236,6 @@ namespace ContosoUniversity.Data
                     }
             };
 
-            
             foreach (Enrollment e in enrollments)
             {
                 var enrollmentInDataBase = context.Enrollments.Where(
