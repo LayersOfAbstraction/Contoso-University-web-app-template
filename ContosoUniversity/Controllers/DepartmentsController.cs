@@ -34,7 +34,9 @@ namespace ContosoUniversity.Controllers
                 return NotFound();
             }
             //Activates eager loading for the Administrator.
+            string query = "SELECT * FROM Department WHERE DepartmentID = {0}";
             var department = await _context.Departments
+                .FromSql(query, id)
                 .Include(d => d.Administrator)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.DepartmentID == id);
@@ -256,8 +258,7 @@ namespace ContosoUniversity.Controllers
                 //concurrency error message. 
                 //Log the error (uncomment ex variable name and write a log.)
                 return RedirectToAction(nameof(Delete), new { concurrencyError = true, id = department.DepartmentID });
-            }
-            
+            }            
         }
 
         private bool DepartmentExists(int id)
