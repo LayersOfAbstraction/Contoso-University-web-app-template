@@ -39,7 +39,8 @@ namespace ContosoUniversity.Controllers
                 .FromSql(query, id)
                 .Include(d => d.Administrator)
                 .AsNoTracking()
-                .FirstOrDefaultAsync(m => m.DepartmentID == id);
+                .FirstOrDefaultAsync();
+
             if (department == null)
             {
                 return NotFound();
