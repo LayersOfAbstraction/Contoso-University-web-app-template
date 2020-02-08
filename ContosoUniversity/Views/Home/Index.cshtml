@@ -2,11 +2,11 @@
     ViewData["Title"] = "Home Page";
     Layout = null;
 }
-<link href="~/css/bootstrap.css" rel="stylesheet" />
+<link href="~/css/bootstrap_home.css" rel="stylesheet" />
 <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Contoso University</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">PITCHER</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -36,68 +36,74 @@
             </div>
         </nav>
     </header>
-@* <h1>Contoso University</h1> *@
 
 <div class="bgimg-1">
   <div class="caption">
-  <span class="border">SCROLL DOWN</span>
+  <span class="border">PITCHER</span>
   </div>
 </div>
 
 <div style="color: #777;background-color:white;text-align:center;padding:50px 80px;text-align: justify;">
-  <h3 style="text-align:center;">Parallax Demo</h3>
-  <p>Parallax scrolling is a web site trend where the background content is moved at a different speed than the foreground content while scrolling. Nascetur per nec posuere turpis, lectus nec libero turpis nunc at, sed posuere mollis ullamcorper libero ante lectus, blandit pellentesque a, magna turpis est sapien duis blandit dignissim. Viverra interdum mi magna mi, morbi sociis. Condimentum dui ipsum consequat morbi, curabitur aliquam pede, nullam vitae eu placerat eget et vehicula. Varius quisque non molestie dolor, nunc nisl dapibus vestibulum at, sodales tincidunt mauris ullamcorper, dapibus pulvinar, in in neque risus odio. Accumsan fringilla vulputate at quibusdam sociis eleifend, aenean maecenas vulputate, non id vehicula lorem mattis, ratione interdum sociis ornare. Suscipit proin magna cras vel, non sit platea sit, maecenas ante augue etiam maecenas, porta porttitor placerat leo.</p>
+  <h3 style="text-align:center;">Welcome to Pitcher</h3>
+  <p>Pitcher is a simple application that will allow your team to operate more effectively 
+      in hunting down application bugs without resorting to spread sheets and emailing 
+      duplicate bug reports to each other. This application provides an effective login
+      for your team to create users who can either function as administrators, who have
+      their own jobs and job problems.
+  </p>
+  <br>
+  <p>
+      Standard users that the admin creates can create problems 
+      about the project that admin has assigned them to do. Each job
+      can have it's own chat feature that allows users assigned to 
+      problem to clarify the problem's cause and what needs to be done.
+  </p>
 </div>
 
 <div class="bgimg-2">
   <div class="caption">
-  <span class="border" style="background-color:transparent;font-size:25px;color: #f7f7f7;">LESS HEIGHT</span>
+  <span class="border">HOSTING IT</span>
   </div>
 </div>
 
 <div style="position:relative;">
   <div style="color:#ddd;background-color:#282E34;text-align:center;padding:50px 80px;text-align: justify;">
-  <p>Scroll up and down to really get the feeling of how Parallax Scrolling works.</p>
+  <p>Created to be lightwieght. You can host the front end on any OS whether via a paid hosting service or your own dedicated server.</p>
   </div>
 </div>
 
 <div class="bgimg-3">
   <div class="caption">
-  <span class="border" style="background-color:transparent;font-size:25px;color: #f7f7f7;">SCROLL UP</span>
+  <span class="border" style="background-color:transparent;font-size:25px;color: #f7f7f7;">FREE AND OPEN SOURCE</span>
   </div>
 </div>
 
 <div style="position:relative;">
   <div style="color:#ddd;background-color:#282E34;text-align:center;padding:50px 80px;text-align: justify;">
-  <p>Scroll up and down to really get the feeling of how Parallax Scrolling works.</p>
+  <p>Made in Entity Framework Core and powered by ASP.NET Core MVC with a backend SQL Server database.</p>
   </div>
 </div>
 
-<div class="bgimg-1">
+<div class="bgimg-4">
   <div class="caption">
-  <span class="border">COOL!</span>
+  <span class="border">CONTRIBUTING</span>
   </div>
 </div>
 
     <div class="col-md-4">
-        <h2>Welcome to Contoso University</h2>
+        <h2>Got a problem with the software?</h2>
         <p>
-            Contoso University is a sample application that
-            we will use as template to use Entity Framework Core
-            with an ASP.NET Core MVC web application.
+            Contact me at jnash51@live.com 
         </p>
     </div>
     <div class="col-md-4">
-        <h2>Build it from scratch</h2>
-        <p>You can build the application by following the steps in a series of tutorials.</p>
-        <p><a class="btn btn-default" href="https://docs.asp.net/en/latest/data/ef-mvc/intro.html">See the tutoiral
-                &raquo;</a></p>
+        <h2>Use it as a template</h2>
+        <p>You can easily turn this application into another other web apps like a home asset management system or a repair notification system.</p>        
     </div>
     <div class="col-md-4">
         <h2>Download it</h2>
-        <p>You can Download the completed project from GitHub.</p>
-        <p><a class="btn btn-default" href="https://github.com/aspnet/AspNetCore.Docs/
-              tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final"> See the project source code &raquo;</a></p>        
+        <p>You can Download the completed project and it's releases from GitHub or contribute to it.</p>
+        <p><a class="btn btn btn-primary" href="https://github.com/LayersOfAbstraction/Pitcher"> See the project source code &raquo;</a></p>        
     </div>
 <div class="container">        
         <partial name="_CookieConsentPartial" />
@@ -107,7 +113,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-           <p style="color:blue">&copy; 2019 - Contoso University - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></p>
+           <p style="color:blue">&copy; 2019 - Pitcher - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></p>
         </div>
     </footer>
 
