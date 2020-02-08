@@ -78,7 +78,7 @@ This file was copied and edited solely to add
   }
   
   .bgimg-3 {
-    background-image: url("../images/pitcher3.jpg");
+    background-image: url("../images/pitcher3_1.jpg");
     min-height: 400px;
   }
 
@@ -116,14 +116,8 @@ This file was copied and edited solely to add
     .bgimg-1, .bgimg-2, .bgimg-3 {
       background-attachment: scroll;
     }
-  }
- 
- /* Images used */
- .img1 {background-image: url("../../../../images/pitcher1.jpg");}
- .img2 {background-image: url("../../../../images/pitcher2.jpg");}
- .img3 {background-image: url("../../../../images/pitcher3.jpg");}
- .img4 {background-image: url("../../../../images/pitcher4.jpg");}
- 
+  } 
+
  article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
    display: block;
  }
