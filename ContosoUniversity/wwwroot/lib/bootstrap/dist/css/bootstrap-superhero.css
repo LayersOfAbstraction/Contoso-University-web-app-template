@@ -57,26 +57,6 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-* {
-  box-sizing: border-box;
-}
-
-.bg-image {
-  /* Full height */
-  height: 50%;
-
-/* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-/* Images used */
-.img1 {background-image: url("../../images/pitcher1.jpg");}
-.img2 {background-image: url("../../images/pitcher2.jpg");}
-.img3 {background-image: url("../../images/pitcher3.jpg");}
-.img4 {background-image: url("../../images/pitcher4.jpg");}
-
 article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block;
 }
